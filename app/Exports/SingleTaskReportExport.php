@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Events\BeforeWriting;
 use App\Exports\Sheets\RcGeneralSheet;
 use App\Exports\Sheets\RcDenahSheet;
 use App\Exports\Sheets\RcCommissioningSheet;
+use App\Exports\Sheets\RcFotoSheet;
 use App\Exports\Sheets\GfdFormEntrySheet;
 use App\Exports\Sheets\GfdLayoutSheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -31,6 +32,7 @@ class SingleTaskReportExport implements WithMultipleSheets, WithEvents
             $sheets[] = new RcGeneralSheet($this->report);
             $sheets[] = new RcDenahSheet($this->report);
             $sheets[] = new RcCommissioningSheet($this->report);
+            $sheets[] = new RcFotoSheet($this->report);
         } elseif ($this->report->isGfd()) {
             $sheets[] = new GfdFormEntrySheet($this->report);
             $sheets[] = new GfdLayoutSheet();
@@ -49,7 +51,7 @@ class SingleTaskReportExport implements WithMultipleSheets, WithEvents
                         $path = storage_path('app/public/' . $this->report->denah_sld_file);
                         $sourceSpreadsheet = IOFactory::load($path);
 
-                        $placeholderTitle = $this->report->isRc() ? 'Denah SLD' : 'Layout';
+                        $placeholderTitle = $this->report->isRc() ? 'Denah' : 'Layout';
                         $placeholderSheet = $targetSpreadsheet->getSheetByName($placeholderTitle);
                         
                         if ($placeholderSheet) {

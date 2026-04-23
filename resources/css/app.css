@@ -1,0 +1,151 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+
+    /* Primary Palette */
+    --color-primary: #7C3AED;
+    --color-primary-light: #8B5CF6;
+    --color-primary-dark: #6D28D9;
+    --color-primary-container: #2D1B4D;
+    --color-on-primary: #ffffff;
+
+    /* Secondary Palette */
+    --color-secondary: #F97316;
+    --color-secondary-light: #FB923C;
+    --color-secondary-container: #EA580C;
+    --color-on-secondary: #ffffff;
+
+    /* Tertiary Palette */
+    --color-tertiary: #FFCD71;
+    --color-tertiary-light: #FFD98E;
+    --color-tertiary-container: #F59E0B;
+
+    /* Surface Palette */
+    --color-surface: #FFFFFF;
+    --color-surface-dim: #F8F9FA;
+    --color-surface-container-low: #F8F8F8;
+    --color-surface-container: #F2F2F2;
+    --color-surface-container-high: #ECECEC;
+    --color-surface-container-highest: #E6E6E6;
+
+    /* On-Surface */
+    --color-on-surface: #1D1B1F;
+    --color-on-surface-variant: #49454E;
+    --color-outline: #7A757F;
+    --color-outline-variant: #CBC4CF;
+
+    /* Status Colors */
+    --color-success: #16A34A;
+    --color-success-bg: #F0FDF4;
+    --color-warning: #D97706;
+    --color-warning-bg: #FFFBEB;
+    --color-error: #DC2626;
+    --color-error-bg: #FEF2F2;
+    --color-info: #2563EB;
+    --color-info-bg: #EFF6FF;
+
+    /* Shadows */
+    --shadow-ambient: 0px 24px 48px rgba(45, 27, 77, 0.1);
+    --shadow-sm: 0px 1px 3px rgba(45, 27, 77, 0.06);
+    --shadow-md: 0px 4px 12px rgba(45, 27, 77, 0.08);
+
+    /* Roundedness */
+    --radius-sm: 0.125rem;
+    --radius-md: 0.25rem;
+    --radius-lg: 0.375rem;
+    --radius-xl: 0.5rem;
+    --radius-full: 9999px;
+}
+
+/* Base Styles */
+body {
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Focus styles - design system spec: subtle outer glow */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(124, 58, 237, 0.2);
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(124, 58, 237, 0.4);
+}
+
+/* Table row transitions */
+.table-row-hover {
+    transition: background-color 150ms ease;
+}
+.table-row-hover:hover {
+    background-color: #F8F8F8;
+}
+
+/* Ghost border - design system spec */
+.ghost-border {
+    border: 1px solid rgba(203, 196, 207, 0.15);
+}
+
+/* Gradient CTA - design system spec */
+.btn-gradient {
+    background: linear-gradient(135deg, #F97316, #EA580C);
+}
+
+/* Sidebar active link animation */
+.sidebar-link {
+    transition: all 150ms ease;
+}
+.sidebar-link:active {
+    transform: scale(0.98);
+}
+
+/* Card hover */
+.card-hover {
+    transition: box-shadow 200ms ease;
+}
+.card-hover:hover {
+    box-shadow: 0px 4px 12px rgba(45, 27, 77, 0.08);
+}
+
+/* Alpine.js transitions */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Pagination styles */
+nav[aria-label="Pagination Navigation"] span,
+nav[aria-label="Pagination Navigation"] a {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 0.25rem;
+    transition: all 150ms ease;
+}
+
+nav[aria-label="Pagination Navigation"] span[aria-current="page"] span {
+    background-color: #7C3AED;
+    color: white;
+}

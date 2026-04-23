@@ -29,7 +29,7 @@ class SingleTaskReportExport implements WithMultipleSheets, WithEvents
 
         if ($this->report->isRc()) {
             $sheets[] = new RcGeneralSheet($this->report);
-            $sheets[] = new RcDenahSheet();
+            $sheets[] = new RcDenahSheet($this->report);
             $sheets[] = new RcCommissioningSheet($this->report);
         } elseif ($this->report->isGfd()) {
             $sheets[] = new GfdFormEntrySheet($this->report);

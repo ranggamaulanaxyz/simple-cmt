@@ -52,6 +52,16 @@ class RcCommissioningSheet implements FromView, WithTitle, WithStyles, ShouldAut
                     'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
                 ],
             ],
+            'A10:B500' => [
+                'alignment' => [
+                    'wrapText' => true,
+                ],
+            ],
+            'A10:P12' => [
+                'alignment' => [
+                    'wrapText' => true,
+                ],
+            ],
         ];
     }
 
@@ -85,12 +95,12 @@ class RcCommissioningSheet implements FromView, WithTitle, WithStyles, ShouldAut
             'B' => 9.1,
             'C' => 9.3,
             'D' => 9.1,
-            'E' => 8.0,
-            'F' => 8.0,
-            'G' => 3.0,
-            'H' => 3.0,
+            'E' => 5.0,
+            'F' => 5.0,
+            'G' => 6.0,
+            'H' => 6.0,
             'I' => 3.0,
-            'J' => 3.0,
+            'J' => 6.0,
             'K' => 3.0,
             'L' => 3.0,
             'M' => 5.0,

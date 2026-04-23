@@ -379,12 +379,18 @@ class TaskReportController extends Controller
 
         // Upload images
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $file) {
-                $path = $file->store('report-images', 'public');
-                $report->images()->create([
-                    'image' => $path,
-                    'description' => $request->input("image_descriptions.{$index}"),
-                ]);
+            $uploadedFiles = $request->file('images');
+            $files = is_array($uploadedFiles) ? $uploadedFiles : [$uploadedFiles];
+            $descriptions = $request->input('image_descriptions', []);
+
+            foreach ($files as $index => $file) {
+                if ($file->isValid()) {
+                    $path = $file->store('report-images', 'public');
+                    $report->images()->create([
+                        'image' => $path,
+                        'description' => $descriptions[$index] ?? null,
+                    ]);
+                }
             }
         }
     }

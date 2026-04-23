@@ -472,7 +472,41 @@
                     <h2 class="text-lg font-bold text-on-surface font-display tracking-tight">Foto Dokumentasi</h2>
                 </div>
 
-                <div x-data="{ files: [] }">
+                <div x-data="{ 
+                    selections: [],
+                    addSelection(event) {
+                        const files = event.target.files;
+                        if (files.length > 0) {
+                            const id = Date.now();
+                            const filesArray = Array.from(files);
+                            this.selections.push({
+                                id: id,
+                                files: filesArray,
+                                descriptions: filesArray.map(() => '')
+                            });
+
+                            const input = event.target;
+                            const container = document.getElementById('hidden-inputs-container');
+                            input.id = 'input-' + id;
+                            input.classList.add('hidden');
+                            container.appendChild(input);
+
+                            const newInput = document.createElement('input');
+                            newInput.type = 'file';
+                            newInput.name = 'images[]';
+                            newInput.multiple = true;
+                            newInput.accept = 'image/*';
+                            newInput.className = 'hidden';
+                            newInput.onchange = (e) => this.addSelection(e);
+                            document.getElementById('upload-label').appendChild(newInput);
+                        }
+                    },
+                    removeSelection(index, id) {
+                        this.selections.splice(index, 1);
+                        const input = document.getElementById('input-' + id);
+                        if (input) input.remove();
+                    }
+                }">
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
                         @foreach($report->images as $image)
                             <div class="relative group aspect-square rounded-2xl overflow-hidden border border-outline-variant/10 shadow-sm">
@@ -494,33 +528,43 @@
                         @endforeach
                     </div>
 
-                    <label class="relative group flex flex-col items-center justify-center w-full h-40 bg-surface-container-low rounded-2xl cursor-pointer hover:bg-primary/5 transition-all border-2 border-dashed border-outline-variant/30 overflow-hidden">
-                        <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-[0.02] transition-opacity"></div>
-                        <div class="text-center p-8">
-                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm mx-auto mb-3 group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-primary text-2xl">add_a_photo</span>
-                            </div>
-                            <p class="text-xs font-bold text-on-surface mb-1" x-text="files.length > 0 ? files.length + ' file dipilih' : 'Tambah Foto'"></p>
-                            <p class="text-[10px] text-on-surface/40 uppercase tracking-widest font-medium">Tambah dokumentasi baru</p>
-                        </div>
-                        <input type="file" name="images[]" multiple accept="image/*" class="hidden" @change="files = [...$event.target.files]">
-                    </label>
-
-                    <template x-if="files.length > 0">
-                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <template x-for="(file, i) in files" :key="i">
-                                <div class="flex items-center gap-4 p-4 bg-surface-container-low/50 rounded-xl border border-outline-variant/10 shadow-sm animate-fade-in">
-                                    <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-primary shadow-inner">
-                                        <span class="material-symbols-outlined">image</span>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-xs font-bold text-on-surface truncate" x-text="file.name"></p>
-                                        <input type="text" :name="`image_descriptions[${i}]`" placeholder="Tambahkan deskripsi..." class="w-full mt-2 bg-white rounded-lg py-2 px-3 text-[11px] border-none focus:ring-2 focus:ring-primary/10 transition-all">
-                                    </div>
+                    <div class="space-y-6">
+                        <label id="upload-label" class="relative group flex flex-col items-center justify-center w-full h-40 bg-surface-container-low rounded-2xl cursor-pointer hover:bg-primary/5 transition-all border-2 border-dashed border-outline-variant/30 overflow-hidden">
+                            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-[0.02] transition-opacity"></div>
+                            <div class="text-center p-8">
+                                <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm mx-auto mb-3 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-primary text-2xl">add_a_photo</span>
                                 </div>
-                            </template>
-                        </div>
-                    </template>
+                                <p class="text-xs font-bold text-on-surface mb-1">Tambah Foto Dokumentasi</p>
+                                <p class="text-[10px] text-on-surface/40 uppercase tracking-widest font-medium">Tambah dokumentasi baru (Bisa multiple)</p>
+                            </div>
+                            <input type="file" name="images[]" multiple accept="image/*" class="hidden" @change="addSelection($event)">
+                        </label>
+                        <div id="hidden-inputs-container" class="hidden"></div>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <template x-for="(selection, sIdx) in selections" :key="selection.id">
+                            <div class="space-y-3">
+                                <template x-for="(file, fIdx) in selection.files" :key="fIdx">
+                                    <div class="group relative flex items-center gap-4 p-4 bg-white rounded-2xl border border-outline-variant/10 shadow-sm hover:shadow-md transition-all animate-fade-in">
+                                        <div class="w-14 h-14 bg-primary/5 rounded-xl flex items-center justify-center text-primary shadow-inner">
+                                            <span class="material-symbols-outlined text-2xl">image</span>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <p class="text-[10px] font-bold text-on-surface/60 truncate uppercase tracking-wider" x-text="file.name"></p>
+                                                <button type="button" @click="removeSelection(sIdx, selection.id)" class="text-error/40 hover:text-error transition-colors">
+                                                    <span class="material-symbols-outlined text-sm">delete</span>
+                                                </button>
+                                            </div>
+                                            <input type="text" name="image_descriptions[]" x-model="selection.descriptions[fIdx]" placeholder="Tambahkan deskripsi foto..." class="w-full bg-surface-container-low/50 rounded-lg py-2 px-3 text-[11px] border-none focus:ring-2 focus:ring-primary/20 transition-all">
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
                 </div>
             </div>
 

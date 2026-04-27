@@ -105,7 +105,7 @@
                         <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in">
                             <div>
                                 <label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface/50 mb-2">Arah Gardu</label>
-                                <input type="text" name="arah_gardu" value="{{ old('arah_gardu', $report->arah_gardu) }}" class="w-full bg-surface-container-low rounded-md py-3.5 px-4 text-sm border-none focus:ring-2 focus:ring-secondary/20 transition-all" placeholder="Utara/Selatan/dll">
+                                <input type="text" name="arah_gardu" value="{{ old('arah_gardu', $report->arah_gardu) }}" class="w-full bg-surface-container-low rounded-md py-3.5 px-4 text-sm border-none focus:ring-2 focus:ring-secondary/20 transition-all" >
                                 @error('arah_gardu') <p class="text-xs text-error mt-1">{{ $message }}</p> @enderror
                             </div>
                             <div>
@@ -122,6 +122,11 @@
                                 <label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface/50 mb-2">Gardu Induk</label>
                                 <input type="text" name="gardu_induk" value="{{ old('gardu_induk', $report->gardu_induk) }}" class="w-full bg-surface-container-low rounded-md py-3.5 px-4 text-sm border-none focus:ring-2 focus:ring-secondary/20 transition-all">
                                 @error('gardu_induk') <p class="text-xs text-error mt-1">{{ $message }}</p> @enderror
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface/50 mb-2">Type Gardu</label>
+                                <input type="text" name="type_gardu" value="{{ old('type_gardu', $report->type_gardu) }}" class="w-full bg-surface-container-low rounded-md py-3.5 px-4 text-sm border-none focus:ring-2 focus:ring-secondary/20 transition-all">
+                                @error('type_gardu') <p class="text-xs text-error mt-1">{{ $message }}</p> @enderror
                             </div>
                         </div>
                     </template>

@@ -32,8 +32,8 @@ Route::middleware(['auth', 'active'])->group(function () {
 
     // Shared Admin & Pimpinan routes
     Route::middleware('role:admin,pimpinan')->group(function () {
-        Route::get('/export/reports', [ExportController::class, 'exportReports'])->name('export.reports');
         Route::get('/export/reports/{report}', [ExportController::class, 'exportSingleReport'])->name('export.reports.single');
+        Route::get('/export/reports/{report}/docx', [ExportController::class, 'exportWordPhotoDoc'])->name('export.reports.docx');
         Route::post('/reports/{report}/reject', [TaskReportController::class, 'reject'])->name('reports.reject');
     });
 

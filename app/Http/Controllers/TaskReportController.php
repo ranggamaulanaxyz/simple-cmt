@@ -306,6 +306,7 @@ class TaskReportController extends Controller
             $rules['task_type'] = ['nullable', 'string', 'max:255'];
             $rules['penyulang'] = ['nullable', 'string', 'max:255'];
             $rules['gardu_induk'] = ['nullable', 'string', 'max:255'];
+            $rules['type_gardu'] = ['nullable', 'string', 'max:255'];
             $rules['old_gfd'] = ['nullable', 'string'];
             $rules['old_gfd_type_serial_number'] = ['nullable', 'string'];
             $rules['old_gfd_setting_kepekaan_arus'] = ['nullable', 'string'];

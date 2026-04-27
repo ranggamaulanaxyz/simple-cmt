@@ -1,75 +1,114 @@
 <table>
-    <!-- Header Row 1-3 Reserved for Logo and PLN info -->
+    <!-- Row 1-3: Header Info -->
     <tr>
         <td colspan="2"></td>
-        <td colspan="14" style="font-weight: bold;">PT.PLN (PERSERO)</td>
+        <td colspan="15" style="font-weight: bold; font-size: 8pt;">PT.PLN (PERSERO)</td>
     </tr>
     <tr>
         <td colspan="2"></td>
-        <td colspan="14">UNIT INDUK DISTRIBUSI BANTEN</td>
+        <td colspan="15" style="font-weight: bold; font-size: 8pt;">UNIT INDUK DISTRIBUSI BANTEN</td>
     </tr>
     <tr>
         <td colspan="2"></td>
-        <td colspan="14">UP3 TELUK NAGA</td>
+        <td colspan="15" style="font-weight: bold; font-size: 8pt;">UP3 TELUK NAGA</td>
     </tr>
 
-    <!-- Title -->
+    <!-- Row 4: Spacer/Title -->
     <tr>
-        <td colspan="16" style="text-align: center; font-weight: bold; font-size: 14px; height: 30px; vertical-align: middle;">
+        <td colspan="17" style="text-align: center; font-weight: bold; font-size: 16pt; height: 30px;">
             FORM PEMASANGAN GROUND FAULT DETECTOR (GFD)
         </td>
     </tr>
 
-    <!-- General Info Section -->
+    <!-- Row 5: Spacer -->
+    <tr><td colspan="17"></td></tr>
+
+    <!-- Row 6: UP3 -->
     <tr>
-        <td colspan="2" style="border: 1px solid #000;">UP3</td>
-        <td style="border: 1px solid #000; text-align: center;">:</td>
-        <td colspan="13" style="border: 1px solid #000;">TELUK NAGA</td>
-    </tr>
-    <tr>
-        <td colspan="2" style="border: 1px solid #000;">TANGGAL</td>
-        <td style="border: 1px solid #000; text-align: center;">:</td>
-        <td colspan="13" style="border: 1px solid #000;">{{ $report->date ? $report->date->translatedFormat('d F Y') : '-' }}</td>
-    </tr>
-    <tr>
-        <td colspan="2" style="border: 1px solid #000;">JENIS PEKERJAAN</td>
-        <td style="border: 1px solid #000; text-align: center;">:</td>
-        <td colspan="13" style="border: 1px solid #000;">{{ strtoupper($report->task_type ?? '-') }}</td>
-    </tr>
-    <tr>
-        <td colspan="2" style="border: 1px solid #000;">NOMOR GARDU</td>
-        <td style="border: 1px solid #000; text-align: center;">:</td>
-        <td colspan="4" style="border: 1px solid #000;">{{ $report->gardu ?? '-' }}</td>
-        <td colspan="2" style="border: 1px solid #000;">ARAH GARDU</td>
-        <td style="border: 1px solid #000; text-align: center;">:</td>
-        <td colspan="6" style="border: 1px solid #000;">{{ $report->arah_gardu ?? '-' }}</td>
-    </tr>
-    <tr>
-        <td colspan="2" style="border: 1px solid #000;">PENYULANG</td>
-        <td style="border: 1px solid #000; text-align: center;">:</td>
-        <td colspan="13" style="border: 1px solid #000;">{{ $report->penyulang ?? '-' }}</td>
-    </tr>
-    <tr>
-        <td colspan="2" style="border: 1px solid #000;">GARDU INDUK</td>
-        <td style="border: 1px solid #000; text-align: center;">:</td>
-        <td colspan="13" style="border: 1px solid #000;">{{ $report->gardu_induk ?? '-' }}</td>
-    </tr>
-    <tr>
-        <td colspan="2" style="border: 1px solid #000; height: 40px; vertical-align: top;">ALAMAT GARDU</td>
-        <td style="border: 1px solid #000; text-align: center; vertical-align: top;">:</td>
-        <td colspan="6" style="border: 1px solid #000; vertical-align: top; wrap-text: true;">{{ $report->address ?? '-' }}</td>
-        <td colspan="2" style="border: 1px solid #000; vertical-align: top;">KORDINAT</td>
-        <td style="border: 1px solid #000; text-align: center; vertical-align: top;">:</td>
-        <td colspan="4" style="border: 1px solid #000; text-align: center; vertical-align: top;">{{ $report->latitude ?? '-' }} , {{ $report->longitude ?? '-' }}</td>
+        <td></td>
+        <td colspan="4">UP3</td>
+        <td>:</td>
+        <td colspan="11">TELUK NAGA</td>
     </tr>
 
-    <!-- GFD Header Comparison -->
+    <!-- Row 7: Spacer -->
+    <tr><td></td></tr>
+
+    <!-- Row 8: TANGGAL -->
     <tr>
-        <td colspan="8" style="background-color: #f3f3f3; border: 1px solid #000; text-align: center; font-weight: bold;">GFD TERPASANG / LAMA</td>
-        <td colspan="8" style="background-color: #f3f3f3; border: 1px solid #000; text-align: center; font-weight: bold;">GFD TERPASANG BARU</td>
+        <td></td>
+        <td colspan="4">TANGGAL</td>
+        <td>:</td>
+        <td colspan="11">{{ $report->date ? $report->date->translatedFormat('d F Y') : '-' }}</td>
     </tr>
 
-    <!-- GFD ParamsRows -->
+    <!-- Row 9: JENIS PEKERJAAN -->
+    <tr>
+        <td></td>
+        <td colspan="4">JENIS PEKERJAAN</td>
+        <td>:</td>
+        <td colspan="11">{{ strtoupper($report->task_type ?? '-') }}</td>
+    </tr>
+
+    <!-- Row 10: NOMOR GARDU & ARAH GARDU -->
+    <tr>
+        <td></td>
+        <td colspan="4">NOMOR GARDU</td>
+        <td>:</td>
+        <td colspan="3">{{ $report->gardu ?? '-' }}</td>
+        <td></td>
+        <td colspan="3">ARAH GARDU     :</td>
+        <td colspan="4">{{ $report->arah_gardu ?? '-' }}</td>
+    </tr>
+
+    <!-- Row 11: PENYULANG -->
+    <tr>
+        <td></td>
+        <td colspan="4">PENYULANG</td>
+        <td>:</td>
+        <td>{{ $report->penyulang ?? '-' }}</td>
+    </tr>
+
+    <!-- Row 12: GARDU INDUK -->
+    <tr>
+        <td></td>
+        <td colspan="4">GARDU INDUK</td>
+        <td>:</td>
+        <td>{{ $report->gardu_induk ?? '-' }}</td>
+    </tr>
+
+    <!-- Row 13: ALAMAT GARDU -->
+    <tr>
+        <td></td>
+        <td colspan="4" style="vertical-align: middle;">ALAMAT GARDU</td>
+        <td style="vertical-align: middle;">:</td>
+        <td colspan="11" style="vertical-align: middle; height: 40px; font-weight: bold">{{ $report->address ?? '-' }}</td>
+    </tr>
+
+    <!-- Row 14: KORDINAT -->
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>KORDINAT :</td>
+        <td></td>
+        <td colspan="3">{{ $report->latitude ?? '' }}</td>
+        <td>,</td>
+        <td colspan="3">{{ $report->longitude ?? '' }}</td>
+    </tr>
+
+    <!-- Row 15: GFD HEADERS -->
+    <tr>
+        <td></td>
+        <td colspan="6" style="font-weight: bold; text-align: center; border: 1px solid #000;">GFD TERPASANG / LAMA</td>
+        <td colspan="10" style="font-weight: bold; text-align: center; border: 1px solid #000;">GFD TERPASANG BARU</td>
+    </tr>
+
     @php
         $params = [
             ['label' => 'MERK GFD', 'old' => 'old_gfd', 'new' => 'new_gfd', 'unit' => ''],
@@ -84,77 +123,139 @@
 
     @foreach($params as $row)
     <tr>
-        <td colspan="4" style="border: 1px solid #000;">{{ $row['label'] }}</td>
-        <td style="border: 1px solid #000; text-align: center;">:</td>
-        <td colspan="2" style="border: 1px solid #000;">{{ $report->{$row['old']} ?? '-' }}</td>
-        <td style="border: 1px solid #000;">{{ $row['unit'] }}</td>
-        
-        <td colspan="4" style="border: 1px solid #000;">{{ $row['label'] }}</td>
-        <td style="border: 1px solid #000; text-align: center;">:</td>
-        <td colspan="2" style="border: 1px solid #000;">{{ $report->{$row['new']} ?? '-' }}</td>
-        <td style="border: 1px solid #000;">{{ $row['unit'] }}</td>
-    </tr>
-    @endforeach
+        <td></td>
+        <td colspan="2">{{ $row['label'] }}</td>
+        <td style="text-align: center;">:</td>
+        <td colspan="{{ empty($row['unit']) ? 3 : 2 }}" style="text-align: {{ empty($row['unit']) ? 'center' : 'right' }}; {{ $row['label'] === 'KONDISI' ? 'font-size: 9pt; font-weight: bold;' : '' }}">{{ $report->{$row['old']} ?? '-' }}</td>
+        @if(!empty($row['unit']))
+            <td style="text-align: left;">{{ $row['unit'] }}</td>
+        @endif
 
-    <!-- Uraian Pemeriksaan Section -->
-    <tr>
-        <td colspan="16" style="text-align: center; font-weight: bold; background-color: #f3f3f3; border: 1px solid #000;">URAIAN PEMERIKSAAN</td>
-    </tr>
-
-    @foreach($report->gfdInspections as $index => $insp)
-    @php
-        $itemName = $insp->item->name;
-        if (str_contains($itemName, 'BATTERY')) { $itemName .= ' 3,60 VDC'; }
-        if (str_contains($itemName, 'WIRING CT KE GFD')) { $itemName .= ' 60 Ω'; }
-    @endphp
-    <tr>
-        <td colspan="7" style="border: 1px solid #000;">{{ $index + 1 }}. {{ $itemName }}</td>
-        
-        <!-- ADA / BENAR -->
-        @php
-            $isWiring = str_contains($insp->item->name, 'WIRING');
-            $labelAda = $isWiring ? 'BENAR' : 'ADA';
-        @endphp
-        <td style="border: 1px solid #000; text-align: center; font-weight: bold;">{{ $insp->ada ? 'v' : '' }}</td>
-        <td colspan="2" style="border: 1px solid #000; text-align: center;">{{ $labelAda }}</td>
-        
-        <!-- TIDAK ADA / SALAH -->
-        @php
-            $labelTidakAda = $isWiring ? 'SALAH' : 'TIDAK ADA';
-        @endphp
-        <td style="border: 1px solid #000; text-align: center; font-weight: bold;">{{ $insp->tidak_ada ? 'v' : '' }}</td>
-        <td colspan="2" style="border: 1px solid #000; text-align: center;">{{ $labelTidakAda }}</td>
-        
-        <!-- RUSAK / EMPTY -->
-        @if(!$isWiring)
-        <td style="border: 1px solid #000; text-align: center; font-weight: bold;">{{ $insp->rusak || $insp->salah ? 'v' : '' }}</td>
-        <td colspan="2" style="border: 1px solid #000; text-align: center;">RUSAK</td>
-        @else
-        <td colspan="3" style="border: 1px solid #000;"></td>
+        <td colspan="6">{{ $row['label'] }}</td>
+        <td style="text-align: center;">:</td>
+        <td colspan="{{ empty($row['unit']) ? 3 : 2 }}" style="text-align: {{ empty($row['unit']) ? 'center' : 'right' }}; {{ $row['label'] === 'KONDISI' ? 'font-size: 9pt; font-weight: bold;' : '' }}">{{ $report->{$row['new']} ?? '-' }}</td>
+        @if(!empty($row['unit']))
+            <td style="text-align: left;">{{ $row['unit'] }}</td>
         @endif
     </tr>
     @endforeach
 
+    <!-- Row 23: URAIAN PEMERIKSAAN -->
     <tr>
-        <td colspan="10" style="border: 1px solid #000;">KETERANGAN : {{ $report->notes ?? '-' }}</td>
-        <td colspan="3" style="border: 1px solid #000;">TYPE GARDU :</td>
-        <td colspan="3" style="border: 1px solid #000; text-align: center; font-weight: bold;">BETON</td>
+        <td></td>
+        <td colspan="16" style="font-weight: bold; text-decoration: underline; text-align: center;">URAIAN PEMERIKSAAN</td>
     </tr>
 
-    <!-- Signatures Section -->
-    <tr><td colspan="16"></td></tr>
-    <tr><td colspan="16" style="height: 20px; border-top: 2px solid #000;"></td></tr>
+    <!-- Row 24: Spacer -->
+    <tr><td colspan="17"></td></tr>
+
+    @foreach($report->gfdInspections->sortBy('item.sequence') as $index => $inspection)
     <tr>
-        <td colspan="8" style="text-align: center; font-weight: bold;">PELAKSANA</td>
-        <td colspan="8" style="text-align: center; font-weight: bold;">PENGAWAS</td>
+        <td></td>
+        <td style="font-weight: bold;">{{ $index + 1 }}.</td>
+        <td colspan="4" style="font-weight: bold;">{{ $inspection->item->name }}</td>
+        <td style="font-weight: bold; text-align: center; border: 1px solid #000000;">{{ $inspection->ada ? '√' : '-' }}</td>
+        <td></td>
+        <td style="font-weight: bold; border: 1px solid #000000;">ADA</td>
+        <td></td>
+        <td style="font-weight: bold; text-align: center; border: 1px solid #000000;">{{ $inspection->tidak_ada ? '√' : '-' }}</td>
+        <td></td>
+        <td style="font-weight: bold; border: 1px solid #000000;">TIDAK ADA</td>
+        <td></td>
+        <td style="font-weight: bold; text-align: center; border: 1px solid #000000;">{{ $inspection->rusak ? '√' : '-' }}</td>
+        <td></td>
+        <td style="font-weight: bold; border: 1px solid #000000;">RUSAK</td>
     </tr>
     <tr>
-        <td colspan="8" style="text-align: center;">PT WAHANA CAHAYA SUKSES</td>
-        <td colspan="8"></td>
+        <td></td>
     </tr>
-    <tr><td colspan="16" style="height: 50px;"></td></tr>
+    @endforeach
     <tr>
-        <td colspan="8" style="text-align: center;">( JAJANG CAHYANA )</td>
-        <td colspan="8" style="text-align: center;">( Akhson )</td>
+        <td></td>
+        <td colspan="2" style="font-weight: bold">KETERANGAN:</td>
+        <td colspan="9">{{ $report->notes ?? '-' }}</td>
+        <td style="font-weight: bold">TYPE GARDU</td>
+        <td style="font-weight: bold">:</td>
+        <td></td>
+        <td></td>
+        <td style="font-weight: bold; border: 1px solid #000000">{{ $report->type_gardu ?? '-' }}</td>
     </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="16" style="text-align: center; font-weight: bold;">{{ strtoupper($report->task_type ?? 'PASANG BARU') }}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="16"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="16"></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="16"></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center; font-weight: bold">PELAKSANA</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="5" style="text-align: center; font-weight: bold">PENGAWAS</td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align: right">(</td>
+        <td style="text-align: center">JAJANG CAHYANA</td>
+        <td></td>
+        <td>)</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: right">(</td>
+        <td colspan="5" style="text-align: center">Akshon</td>
+        <td>)</td>
+    </tr>
+
 </table>

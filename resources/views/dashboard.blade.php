@@ -64,12 +64,6 @@
                     <h2 class="text-xl font-bold text-on-surface">Aktivitas Terkini</h2>
                     <p class="text-sm text-on-surface/40 mt-1">Laporan pekerjaan terakhir</p>
                 </div>
-                @if($user->isAdmin() || $user->isPimpinan())
-                    <a href="{{ route('export.reports') }}" class="text-primary font-bold text-[10px] uppercase tracking-widest hover:underline flex items-center gap-1">
-                        <span class="material-symbols-outlined text-sm">download</span>
-                        Export Excel
-                    </a>
-                @endif
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left">

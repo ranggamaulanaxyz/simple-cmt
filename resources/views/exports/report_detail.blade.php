@@ -140,6 +140,12 @@
                 <td>{{ $report->penyulang }}</td>
             </tr>
             <tr>
+                <td style="font-weight: bold;">Type Gardu</td>
+                <td>{{ $report->type_gardu }}</td>
+                <td style="font-weight: bold;"></td>
+                <td></td>
+            </tr>
+            <tr>
                 <td style="font-weight: bold;">Arah Gardu</td>
                 <td>{{ $report->arah_gardu }}</td>
                 <td style="font-weight: bold;">Jenis Pekerjaan</td>

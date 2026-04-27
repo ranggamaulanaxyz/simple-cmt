@@ -10,14 +10,6 @@
             <p class="text-sm text-on-surface/40 mt-1">Semua laporan pekerjaan</p>
         </div>
         <div class="flex items-center gap-3">
-            @if(auth()->user()->isAdmin() || auth()->user()->isPimpinan())
-            <a href="{{ route('export.reports', request()->query()) }}"
-               class="py-2.5 px-5 text-primary font-bold text-xs uppercase tracking-widest hover:bg-primary/5 rounded-md transition-all flex items-center gap-2"
-               style="border: 1px solid rgba(124,58,237,0.2);">
-                <span class="material-symbols-outlined text-sm">download</span>
-                Export Excel
-            </a>
-            @endif
             @if(auth()->user()->isPegawai())
             <a href="{{ route('reports.create') }}"
                class="py-2.5 px-5 bg-primary hover:bg-primary-dark text-white rounded-md transition-all font-bold flex items-center gap-2 active:scale-[0.98] text-xs uppercase tracking-widest">
@@ -176,11 +168,6 @@
                     <td class="py-4"><x-status-badge :status="$report->status_pimpinan" /></td>
                     <td class="py-4">
                         <div class="flex items-center justify-end gap-1">
-                            @if(auth()->user()->isAdmin() || auth()->user()->isPimpinan())
-                            <a href="{{ route('export.reports.single', $report) }}" class="p-1.5 hover:bg-primary/10 rounded transition-colors" title="Export Excel">
-                                <span class="material-symbols-outlined text-base text-primary">download</span>
-                            </a>
-                            @endif
                             <a href="{{ route('reports.show', $report) }}" class="p-1.5 hover:bg-surface-container rounded transition-colors" title="Lihat">
                                 <span class="material-symbols-outlined text-base text-on-surface-variant">visibility</span>
                             </a>

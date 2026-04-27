@@ -43,8 +43,8 @@ class GfdFormEntrySheet implements FromView, WithTitle, WithStyles, WithColumnWi
         $drawing = new Drawing();
         $drawing->setName('Logo');
         $drawing->setDescription('PLN Logo');
-        $drawing->setPath(public_path('logo.png'));
-        $drawing->setHeight(40);
+        $drawing->setPath(public_path('assets/img/Picture3.png'));
+        $drawing->setHeight(60);
         $drawing->setCoordinates('A1');
         $drawing->setOffsetX(10);
         $drawing->setOffsetY(5);
@@ -55,41 +55,30 @@ class GfdFormEntrySheet implements FromView, WithTitle, WithStyles, WithColumnWi
     public function columnWidths(): array
     {
         return [
-            'A' => 4,  // Margin/Logo
-            'B' => 12, // Information label
-            'C' => 3,  // Colon
-            'D' => 10, // Value
-            'E' => 10, // Value
-            'F' => 10, // Value
-            'G' => 10, // Value
-            'H' => 10, // Value
-            'I' => 12, // Sub-label
-            'J' => 3,  // Colon
-            'K' => 8,  // Box
-            'L' => 8,  // Tag
-            'M' => 8,  // Box
-            'N' => 8,  // Tag
-            'O' => 8,  // Box
-            'P' => 8,  // Tag
+            'A' => 1,
+            'B' => 6,
+            'C' => 30,
+            'D' => 2,
+            'E' => 10,
+            'F' => 4,
+            'G' => 4,
+            'H' => 2,
+            'I' => 10,
+            'J' => 2,
+            'K' => 3,
+            'L' => 2,
+            'M' => 15,
+            'N' => 1,
+            'O' => 3,
+            'P' => 1,
+            'Q' => 10,
+            'R' => 1,
         ];
     }
 
     public function styles(Worksheet $sheet): array
     {
-        // General font and alignment
-        $sheet->getStyle('A:P')->getFont()->setName('Arial');
-        $sheet->getStyle('A:P')->getFont()->setSize(9);
-        $sheet->getStyle('A:P')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
-        
-        // Wrap text for address area
-        $sheet->getStyle('D11')->getAlignment()->setWrapText(true);
-
-        return [
-            // Row styling
-            4 => ['font' => ['bold' => true, 'size' => 12]],
-            // Data borders are handled via HTML in Blade mostly, 
-            // but we can add global font bolding for headers here if needed.
-        ];
+        return [];
     }
 
     public function registerEvents(): array
@@ -97,6 +86,8 @@ class GfdFormEntrySheet implements FromView, WithTitle, WithStyles, WithColumnWi
         return [
             AfterSheet::class => function(AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
+                
+                // Page Setup
                 $sheet->getPageSetup()->setPaperSize(PageSetup::PAPERSIZE_A4);
                 $sheet->getPageSetup()->setOrientation(PageSetup::ORIENTATION_PORTRAIT);
                 $sheet->getPageSetup()->setFitToWidth(1);
@@ -106,6 +97,51 @@ class GfdFormEntrySheet implements FromView, WithTitle, WithStyles, WithColumnWi
                 $sheet->getPageMargins()->setRight(0.5);
                 $sheet->getPageMargins()->setLeft(0.5);
                 $sheet->getPageMargins()->setBottom(0.5);
+
+                // Outer Border for Metadata Section
+                $sheet->getStyle('B6:Q7')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('B8:Q8')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('B9:J9')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('K9:Q9')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('B10:J10')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('K10:Q10')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('B11:Q11')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('B12:Q12')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('B13:Q14')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('H14:Q14')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+
+                $sheet->getStyle('B15:G15')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('H15:Q15')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+
+                $sheet->getStyle('B16:G16')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('H16:Q16')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+
+                $sheet->getStyle('B17:G17')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('H17:Q17')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+
+                $sheet->getStyle('B18:G18')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('H18:Q18')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+
+                $sheet->getStyle('B19:G19')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('H19:Q19')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+
+                $sheet->getStyle('B20:G20')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('H20:Q20')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+
+                $sheet->getStyle('B21:G21')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('H21:Q21')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+
+                $sheet->getStyle('B22:G22')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getStyle('H22:Q22')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_THIN);
+
+                // Dynamic borders for signature area based on inspection items
+                $inspectionCount = $this->report->gfdInspections->count();
+                $startRow = 25 + (2 * $inspectionCount) + 1;
+                $endRow = $startRow + 6;
+
+                foreach (range($startRow, $endRow) as $row) {
+                    $sheet->getStyle('B' . $row . ':Q' . $row)->getBorders()->getBottom()->setBorderStyle(Border::BORDER_THIN);
+                }
             },
         ];
     }

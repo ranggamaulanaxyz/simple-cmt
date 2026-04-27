@@ -87,6 +87,7 @@ class RcFotoSheet implements FromView, WithTitle, WithStyles, ShouldAutoSize, Wi
         $colRight = 'I';
 
         foreach ($images->chunk(2) as $chunk) {
+            $chunk = $chunk->values();
             foreach ($chunk as $index => $image) {
                 if (file_exists(storage_path('app/public/' . $image->image))) {
                     $col = ($index === 0) ? $colLeft : $colRight;
@@ -145,6 +146,7 @@ class RcFotoSheet implements FromView, WithTitle, WithStyles, ShouldAutoSize, Wi
                 $row = 11;
 
                 foreach ($images->chunk(2) as $chunk) {
+                    $chunk = $chunk->values();
                     // Title row height
                     $sheet->getRowDimension($row)->setRowHeight(25);
 
@@ -168,7 +170,7 @@ class RcFotoSheet implements FromView, WithTitle, WithStyles, ShouldAutoSize, Wi
                     // Merging
                     $sheet->mergeCells('A' . $row . ':G' . ($row + 15));
     
-                    if (count($chunk) > 1) {
+                    if ($chunk->count() > 1) {
                         // Box 2: I to P
                         $sheet->getStyle('I' . $row . ':P' . ($row + 15))->getBorders()->getOutline()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
 

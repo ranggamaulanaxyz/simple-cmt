@@ -77,6 +77,11 @@
                         <a href="{{ route('export.reports.single', $report) }}" class="py-2.5 px-5 text-primary hover:bg-primary/5 rounded-md font-bold text-xs uppercase tracking-widest transition-all flex items-center gap-2" style="border: 1px solid rgba(124,58,237,0.2);">
                             <span class="material-symbols-outlined text-sm">download</span> Export Excel
                         </a>
+                        @if($report->isGfd())
+                            <a href="{{ route('export.reports.docx', $report) }}" class="py-2.5 px-5 text-primary hover:bg-primary/5 rounded-md font-bold text-xs uppercase tracking-widest transition-all flex items-center gap-2" style="border: 1px solid rgba(124,58,237,0.2);">
+                                <span class="material-symbols-outlined text-sm">description</span> Export Word
+                            </a>
+                        @endif
                     @endif
 
                     <a href="{{ route('reports.index') }}" class="py-2.5 px-5 text-on-surface-variant hover:text-on-surface font-bold text-xs uppercase tracking-widest transition-colors flex items-center gap-2">
@@ -122,6 +127,10 @@
                         <div>
                             <p class="text-[10px] font-bold text-on-surface/40 uppercase tracking-widest mb-1">Gardu Induk</p>
                             <p class="text-sm font-semibold text-on-surface">{{ $report->gardu_induk ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-on-surface/40 uppercase tracking-widest mb-1">Type Gardu</p>
+                            <p class="text-sm font-semibold text-on-surface">{{ $report->type_gardu ?? '-' }}</p>
                         </div>
                     @endif
                     <div>

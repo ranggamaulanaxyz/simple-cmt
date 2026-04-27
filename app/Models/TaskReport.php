@@ -15,7 +15,7 @@ class TaskReport extends Model
         // RC fields
         'rtu', 'modem', 'lokasi', 'date_commissioning', 'denah_sld_file', 'commissioning_notes',
         // GFD fields
-        'task_type', 'penyulang', 'gardu_induk',
+        'task_type', 'penyulang', 'gardu_induk', 'type_gardu',
         'old_gfd', 'old_gfd_type_serial_number', 'old_gfd_setting_kepekaan_arus',
         'old_gfd_setting_kepekaan_waktu', 'old_gfd_setting_waktu',
         'old_gfd_injek_arus', 'old_gfd_condition',
